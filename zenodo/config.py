@@ -1386,10 +1386,11 @@ THEME_TWITTERHANDLE = "@zenodo_org"
 #: Path to logo file.
 THEME_LOGO = "img/INGV_logo2.png"
 #: Google Site Verification ids.
-THEME_GOOGLE_SITE_VERIFICATION = [
-    "5fPGCLllnWrvFxH9QWI0l1TadV7byeEvfPcyK2VkS_s",
-    "Rp5zp04IKW-s1IbpTOGB7Z6XY60oloZD5C3kTM-AiY4"
-]
+THEME_GOOGLE_SITE_VERIFICATION = []
+
+# Google Analytics tracking
+THEME_GOOGLE_ANALYTICS_ID = "your-analytics-id"
+
 #: Piwik site id.
 THEME_PIWIK_ID = None
 
