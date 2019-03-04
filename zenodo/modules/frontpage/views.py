@@ -72,8 +72,12 @@ def index():
         flash(msg, category=current_app.config.get(
             'FRONTPAGE_MESSAGE_CATEGORY', 'info'))
 
+    FrontpageRecordsSearch.Meta.update_community(
+        current_app.config.get('ZENODO_FRONTPAGE_COMMUNITY'))
+
     featured_comms_count = current_app.config.get(
         'ZENODO_FRONTPAGE_FEATURED_COMMUNITIES_COUNT', 3)
+
     featured_communities = [
         fc.community for fc in FeaturedCommunity.query.order_by(
             FeaturedCommunity.start_date.desc()).limit(featured_comms_count)

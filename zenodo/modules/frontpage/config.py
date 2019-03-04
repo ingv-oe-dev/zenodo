@@ -30,6 +30,8 @@ ZENODO_FRONTPAGE_BETA_FEATURES = [
     'citations'
 ]
 
+ZENODO_FRONTPAGE_COMMUNITY = 'zenodo'
+
 ZENODO_FRONTPAGE_FEATURED_COMMUNITIES_COUNT = 3
 """Number of featured communities to be displayed on frontpage."""
 
