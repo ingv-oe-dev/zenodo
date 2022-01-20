@@ -87,7 +87,6 @@ def _(x):
     """Identity function for string extraction."""
     return x
 
-
 #: System sender email address
 ZENODO_SYSTEM_SENDER_EMAIL = 'system@zenodo.org'
 #: Email address of admins
@@ -150,7 +149,7 @@ DEBUG_TB_INTERCEPT_REDIRECTS = False
 #: Switch of assets debug.
 ASSETS_DEBUG = False
 #: Switch of automatic building.
-ASSETS_AUTO_BUILD = False
+ASSETS_AUTO_BUILD = True
 #: Remove app.static_folder from source list of static folders.
 COLLECT_FILTER = 'zenodo.modules.theme.collect:collect_staticroot_removal'
 
@@ -299,7 +298,10 @@ CELERY_BEAT_SCHEDULE = {
 #: Cache key prefix
 CACHE_KEY_PREFIX = "cache::"
 #: Host
+#DEV ENVIRONMENT
 CACHE_REDIS_HOST = "localhost"
+#PROD ENVIRONMENT
+#CACHE_REDIS_HOST = "cache"
 #: Port
 CACHE_REDIS_PORT = 6379
 #: DB
@@ -1382,7 +1384,7 @@ THEME_BREADCRUMB_ROOT_ENDPOINT = 'zenodo_frontpage.index'
 #: Twitter handle.
 THEME_TWITTERHANDLE = "@zenodo_org"
 #: Path to logo file.
-THEME_LOGO = "img/zenodo.svg"
+THEME_LOGO = "img/INGV_logo2.png"
 #: Google Site Verification ids.
 THEME_GOOGLE_SITE_VERIFICATION = [
     "5fPGCLllnWrvFxH9QWI0l1TadV7byeEvfPcyK2VkS_s",
