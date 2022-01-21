@@ -39,10 +39,10 @@ from .proxies import current_openaire
 class _OAType(object):
     """OpenAIRE types."""
 
-    publication = 'publication'
-    dataset = 'dataset'
-    software = 'software'
-    other = 'other'
+    publication = 'publication-oaire'
+    dataset = 'dataset-oaire'
+    software = 'software-oaire'
+    other = 'other-oaire'
 
 
 def is_openaire_publication(record):
