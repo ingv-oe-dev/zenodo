@@ -70,6 +70,6 @@ services:
       - "ELASTICSEARCH_URL=http://es:9200"
   flower:
     image: mher/flower
-    command: --broker=amqp://guest:guest@mq:5672// --broker_api=http://guest:guest@mq:15672/api/
+    command: /usr/local/bin/python /usr/local/bin/flower --broker=amqp://guest:guest@mq:5672// --broker_api=http://guest:guest@mq:15672/api/
     ports:
       - "5555:5555"
