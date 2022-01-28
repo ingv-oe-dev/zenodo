@@ -48,19 +48,20 @@ blueprint = Blueprint(
 
 @blueprint.before_app_first_request
 def init_menu():
-    """Initialize menu before first request."""
-    #item = current_menu.submenu('main.deposit')
-    #item.register(
+    # """Initialize menu before first request."""
+    # item = current_menu.submenu('main.deposit')
+    # item.register(
     #    'invenio_deposit_ui.index',
     #    _('Upload'),
     #    order=2,
-    #)
-    item = current_menu.submenu('main.communities')
-    item.register(
-        'invenio_communities.index',
-        _('Communities'),
-        order=3,
-    )
+    # )
+    # item = current_menu.submenu('main.communities')
+    # item.register(
+    #     'invenio_communities.index',
+    #     _('Communities'),
+    #     order=3,
+    # )
+    return
 
 
 @blueprint.route('/')

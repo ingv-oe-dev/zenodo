@@ -28,7 +28,8 @@ from __future__ import absolute_import, print_function
 
 import smtplib
 
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request,\
+    url_for, current_app
 from flask_babelex import lazy_gettext as _
 from flask_security import current_user
 
@@ -70,14 +71,18 @@ def support():
                     _('There was an issue sending an email to the provided '
                       'address, please make sure it is correct. '
                       'If this issue persists you can send '
-                      'us an email directly to info@zenodo.org.'),
+                      'us an email directly to '
+                      + str(current_app.config.get('SUPPORT_EMAIL'))
+                      + '.'),
                     category='danger'
                 )
             except Exception:
                 flash(
                     _("There was an issue sending the support request."
                       'If this issue persists send '
-                      'us an email directly to info@zenodo.org.'),
+                      'us an email directly to '
+                      + str(current_app.config.get('SUPPORT_EMAIL'))
+                      + '.'),
                     category='danger'
                 )
                 raise
@@ -86,7 +91,9 @@ def support():
                     _('Request sent successfully. '
                       'You should receive a confirmation email within several '
                       'minutes - if this does not happen you should retry or '
-                      'send us an email directly to info@zenodo.org.'),
+                      'send us an email directly to '
+                      + str(current_app.config.get('SUPPORT_EMAIL'))
+                      + '.'),
                     category='success'
                 )
                 return redirect(url_for('zenodo_frontpage.index'))
