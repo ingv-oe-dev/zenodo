@@ -43,6 +43,19 @@ services:
       - db
     volumes_from:
       - static
+  beat:
+    extends:
+      file: docker-services.yml
+      service: app
+    restart: "always"
+    command: "celery beat -A zenodo.celery --loglevel=INFO"
+    links:
+      - cache
+      - es
+      - mq
+      - db
+    volumes_from:
+      - static
   static:
     extends:
       file: docker-services.yml
