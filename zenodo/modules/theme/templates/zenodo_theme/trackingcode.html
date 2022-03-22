@@ -22,7 +22,6 @@
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 -#}
 {%- if config.THEME_PIWIK_ID %}
-<script type="text/javascript">
 var _paq = _paq || [];
 _paq.push(["setDomains", ["*.zenodo.org","*.zenodo.cern.ch","*.zenodo.eu","*.zenodo.net"]]);
 _paq.push(["trackPageView"]);
@@ -35,5 +34,16 @@ _paq.push(["enableLinkTracking"]);
   var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
   g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
 })();
+{%- endif %}
+{%- if config.THEME_GOOGLE_ANALYTICS_ID %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.THEME_GOOGLE_ANALYTICS_ID }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ config.THEME_GOOGLE_ANALYTICS_ID }}');
+  gtag('send', 'pageview');
 </script>
 {%- endif %}

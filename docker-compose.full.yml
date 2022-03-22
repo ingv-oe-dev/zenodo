@@ -51,10 +51,10 @@ services:
     command: tail -f /var/log/*
     user: zenodo
     volumes:
-      # - "/usr/local/var/instance/static"
-      - "/usr/local/var/instance"
+      - "instance:/usr/local/var/instance"
+      - "data:/usr/local/var/instance/data"
       # - "/usr/local/lib/python3.5/site-packages"
-      - "/usr/local/lib/python2.7/site-packages"
+      - "python27_sitepkgs:/usr/local/lib/python2.7/site-packages"
       - "/usr/local/var/data"
       - ".:/code/zenodo"
   # Monitoring
@@ -79,6 +79,8 @@ services:
     extends:
       file: docker-services.yml
       service: db
+    volumes:
+      - "db_data:/var/lib/postgresql/data"
   mq:
     extends:
       file: docker-services.yml
@@ -87,3 +89,8 @@ services:
     extends:
       file: docker-services.yml
       service: es
+volumes:
+  data:  
+  instance:
+  python27_sitepkgs:
+  db_data:
