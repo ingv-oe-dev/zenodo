@@ -102,8 +102,11 @@ services:
     extends:
       file: docker-services.yml
       service: es
-volumes:
-  data:  
+    volumes:
+      - "es_data:/usr/share/elasticsearch/data"
+volumes:  
   instance:
+  data:
   python27_sitepkgs:
   db_data:
+  es_data:

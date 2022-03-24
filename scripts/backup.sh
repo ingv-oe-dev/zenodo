@@ -2,14 +2,12 @@
 #
 
 
-NOW=$(date +"%m-%d-%Y-%T")
+NOW=$(date +"%Y%m%d.%H%M%S")
 
-VOLUMES=("instance", "data", "python27_sitepkgs", "postgre_db")
-
-declare -A NAMED_VOLUMES=( ["instance"]="/usr/local/var/instance" \
+declare -A NAMED_VOLUMES=( \
+	["instance"]="/usr/local/var/instance" \
 	["data"]="/usr/local/var/instance/data" \
-	#["python27_sitepkgs"]="/usr/local/lib/python2.7/site-packages" \
-	#["db_data"]="/var/lib/postgresql/data"\
+	#["es_data"]="/var/lib/postgresql/data"\
 )
 
 #declare -A NAMED_VOLUMES=( ["data"]="/usr/local/var/instance/data" )
@@ -22,8 +20,9 @@ for path in "${!NAMED_VOLUMES[@]}";
 do
 	echo -e "\n BACKUP(ing) $path - ${NAMED_VOLUMES[$path]} TO $DEST_HOST_PATH \n";
 	docker run --rm --volumes-from zenodo_static_1 \
+		-w ${NAMED_VOLUMES[$path]} \
 		-v $DEST_HOST_PATH:/backup ubuntu \
-		tar cPzf /backup/backup-$path-$NOW.tar.gz ${NAMED_VOLUMES[$path]}
+		tar cPzf /backup/backup-$path-$NOW.tar.gz . #${NAMED_VOLUMES[$path]}
 done
 
 ############################################################################################
@@ -44,16 +43,3 @@ do
 	docker exec zenodo_db_1 pg_dump -U zenodo --encoding utf8 \
 		-F ${METHODS[$method]} zenodo > ${DEST_HOST_PATH}/db-$method-$NOW.dump
 done
-#if [ -d "$VIRTUAL_ENV/var/instance/data" ]; then
-#    rm -Rf $VIRTUAL_ENV/var/instance/data
-#fi
-
-# Remove all data
-#zenodo db destroy --yes-i-know
-#zenodo db init
-#zenodo queues purge
-#zenodo index destroy --force --yes-i-know
-
-# Initialize everything again
-#script_path=$(dirname "$0")
-#"$script_path/init.sh"
